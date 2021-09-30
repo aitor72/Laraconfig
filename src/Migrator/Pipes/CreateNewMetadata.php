@@ -149,8 +149,8 @@ class CreateNewMetadata
                 $model->newQuery()
                     ->select([
                     DB::raw("'{$metadata->getKey()}' as metadata_id"),
-                    DB::raw("{$model->getKeyName()} as settable_id"),
-                    DB::raw("'{$model->getMorphClass()}' as settable_type"),
+                    DB::raw("{$model->getKeyName()} as settable_id"),                    
+                    DB::raw("'".addcslashes($model->getMorphClass(), '\\') ."' as settable_type"),
                     DB::raw("'{$metadata->getRawOriginal('default', 'NULL')}' as value"),
                     DB::raw("'{$this->now->toDateTimeString()}' as created_at"),
                     DB::raw("'{$this->now->toDateTimeString()}' as updated_at"),
